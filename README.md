@@ -19,12 +19,14 @@ Although the original filenames refer to EPL prediction, the source files cover 
 
 | File | Description |
 | --- | --- |
-| [Dissertation](epl_results_prediction_dessertation_final.pdf) | Research background, literature review, methodology, experiments, evaluation and conclusions. |
-| [Part 1: exploratory analysis](epl_results_prediction%28part1_eda%29_jupyter_notebook.pdf) | PDF export of the first notebook, covering data exploration and visual analysis. |
-| [Part 2: modelling notebook](epl_results_prediction%28part2%29_jupyter_notebook.ipynb) | Original Jupyter notebook containing preprocessing, feature engineering, modelling and saved outputs. |
-| [Presentation](epl_result_prediction_ppt.pdf) | Slide presentation summarising the research and findings. |
+| [Dissertation](docs/epl_results_prediction_dessertation_final.pdf) | Research background, literature review, methodology, experiments, evaluation and conclusions. |
+| [Part 1: exploratory analysis — PDF](docs/epl_results_prediction%28part1_eda%29_jupyter_notebook.pdf) | Readable PDF export of the exploratory analysis notebook. |
+| [Part 2: modelling — PDF](docs/epl_results_prediction%28part2%29_jupyter_notebook.pdf) | Readable PDF export of the modelling notebook. |
+| [Presentation](docs/epl_result_prediction_ppt.pdf) | Slide presentation summarising the research and findings. |
+| [Part 1: exploratory analysis — notebook](notebooks/epl_results_prediction%28part1_eda%29_jupyter_notebook.ipynb) | Original Jupyter notebook for data exploration and visual analysis. |
+| [Part 2: modelling — notebook](notebooks/epl_results_prediction%28part2%29_jupyter_notebook.ipynb) | Original Jupyter notebook for preprocessing, feature engineering, modelling and evaluation. |
 
-The original notebook was divided into **two parts because of computational demands**. Part 1 is supplied as a PDF export; Part 2 is supplied as an executable notebook format, although its source data is missing. Filenames are retained to match the original materials. The links above assume all four files are uploaded beside this README at the repository root.
+The original notebook was divided into **two parts because of computational demands**. Both parts are available in Jupyter notebook format under `notebooks/`, with PDF copies under `docs/`. The source dataset is currently unavailable. Keep this README at the repository root, alongside the `docs/` and `notebooks/` folders. Links assume the PDF files use `.pdf` and the notebooks use `.ipynb`, with filenames matching those listed above.
 
 ## Data and prediction target
 
@@ -85,7 +87,7 @@ SHAP helps explain model outputs; it does not establish causality, remove leakag
 
 ## Viewing and reproducibility
 
-Start with the presentation for a brief overview, then read the dissertation for the full research narrative. Use the Part 1 PDF to inspect exploratory work and the Part 2 notebook to inspect implementation and saved outputs.
+Start with the presentation for a brief overview, then read the dissertation for the full research narrative. Use the PDF exports for convenient reading and the two original notebooks to inspect code and saved outputs.
 
 The notebook uses Python with pandas, NumPy, scikit-learn, imbalanced-learn, Matplotlib, Seaborn and SHAP, alongside Jupyter. This list describes the principal tools; it is not a tested environment specification.
 
