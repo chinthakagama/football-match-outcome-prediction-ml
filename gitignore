@@ -1,0 +1,46 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local Python environments
+.venv/
+venv/
+env/
+.conda/
+
+# Notebook checkpoints; retain original notebooks and their saved outputs
+.ipynb_checkpoints/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+
+# Source data (not distributed with this research archive)
+data/
+datasets/
+*.csv
+*.parquet
+*.feather
+
+# Generated model files
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.keras
+
+# Temporary files and local editor settings
+*.log
+*.tmp
+~$*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Deliberately retain PDFs, .ipynb files and presentation files.
