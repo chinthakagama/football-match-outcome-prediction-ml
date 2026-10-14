@@ -1,0 +1,18 @@
+# Principal third-party imports used by the archived modelling notebook.
+# Unpinned: original versions are unknown; this is not a validated lock file.
+# Installing these packages does not restore the missing dataset.
+# Legacy APIs may require code changes or a compatible historical environment.
+numpy
+pandas
+scipy
+scikit-learn
+imbalanced-learn
+matplotlib
+seaborn
+python-dateutil
+shap
+jupyterlab
+ipykernel
+
+# The notebook contains TensorFlow installation cells but no TensorFlow imports.
+# TensorFlow is therefore omitted from this core dependency list.
