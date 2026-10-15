@@ -1,6 +1,8 @@
-# Football Match Outcome Classification Using Machine Learning
+# Football Match Outcome Prediction | Machine Learning
 
-An MSc Data Science research project exploring the classification of football matches as **home wins, draws or away wins**, using historical English football data, feature engineering and comparative machine learning.
+MSc Data Science Dissertation Project · English Premier League (EPL) · Three-class classification.
+
+Python | scikit-learn | pandas | Feature Engineering | SelectKBest | One-Hot Encoding | PCA | SMOTE | Grid Search | ROC-AUC | SHAP
 
 **Author:** Chinthaka Gamage  
 **Institution:** Manchester Metropolitan University, United Kingdom  
@@ -11,9 +13,23 @@ An MSc Data Science research project exploring the classification of football ma
 
 ## Project overview
 
-The project investigated how data preparation, feature engineering, class balancing and model selection affect the classification of football match outcomes. Particular attention was given to distinguishing draws from home and away wins and interpreting the contribution of individual features.
+This project investigates whether machine learning can predict the outcome of football matches as **Home win (H)**, **Draw (D)** or **Away win (A)**. It combines historical match statistics, football-domain feature engineering, comparative modelling and explainable AI to examine a difficult, inherently uncertain classification problem.
 
-Although the original filenames refer to EPL prediction, the source files cover **multiple English football divisions**, rather than the Premier League alone. The study is presented here as historical match outcome classification; the original workflow does not establish reliable prediction of unseen matches before kick-off.
+The research was completed as part of an MSc Data Science dissertation at Manchester Metropolitan University. The dissertation focuses on approximately ten seasons of EPL results from 2013 onwards, while the broader data collection described in the research contains **45,952 observations**. These figures refer to different stages of the study and should not be treated as the same modelling sample.
+
+### Headline result
+
+- **Best-performing final model reported in the dissertation:** Random Forest Classifier (RFC)
+- **Held-out test accuracy:** approximately **66%**
+- **Reported ROC-AUC:** approximately **0.82** (see the dissertation for evaluation details)
+- **Prediction classes:** Away win, Draw, Home win
+- **Final comparison:** Random Forest, k-Nearest Neighbours, Gradient Boosting, Multi-Layer Perceptron and Voting Ensemble
+
+> **Result clarification:** The dissertation identifies **Random Forest**, not Gradient Boosting, as the final preferred model. Any different figures from intermediate notebook runs should be labelled as experimental results rather than the dissertation's final test outcome.
+
+## Research objective
+
+Build and evaluate a reproducible analytical workflow for multiclass football-result prediction, with particular attention to feature relevance, class imbalance, generalisation and model interpretability.
 
 ## Repository contents
 
@@ -27,6 +43,108 @@ Although the original filenames refer to EPL prediction, the source files cover 
 | [Part 2: modelling — notebook](notebooks/epl_results_prediction%28part2%29_jupyter_notebook.ipynb) | Original Jupyter notebook for preprocessing, feature engineering, modelling and evaluation. |
 
 The original notebook was divided into **two parts because of computational demands**. Both parts are available in Jupyter notebook format under `notebooks/`, with PDF copies under `docs/`. The source dataset is currently unavailable. Keep this README at the repository root, alongside the `docs/` and `notebooks/` folders. Links assume the PDF files use `.pdf` and the notebooks use `.ipynb`, with filenames matching those listed above.
+
+## Running the notebooks
+
+```bash
+git clone https://github.com/chinthakagama/football-match-outcome-prediction-ml.git
+cd football-match-outcome-prediction-ml
+python -m venv .venv
+```
+
+Activate the environment:
+
+```bash
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+
+# macOS / Linux
+source .venv/bin/activate
+```
+
+Install dependencies and start Jupyter:
+
+```bash
+pip install -r requirements.txt
+jupyter notebook
+```
+
+Open **Part 1** first, followed by **Part 2**. Reproduction may require the original datasets and local path adjustments; the presence of notebooks does not by itself guarantee a fully automated run.
+
+## Dataset and predictive features
+
+The project explores historical football results and related predictors, including:
+
+- Team form and historical performance
+- Home-versus-away characteristics
+- Goals scored and conceded
+- Bookmakers' pre-match betting odds
+- Other engineered indicators examined during exploratory analysis
+
+The research describes an initial set of **138 candidate features** and a later selection of approximately **21 influential features**. The modelling subset is smaller than the broader 45,952-observation collection.
+
+**Important:** For genuinely prospective predictions, every input must be available *before kick-off*. Any post-match statistics, future-derived aggregates or transformations fitted on the full dataset would cause leakage and should not be used in a production-ready model.
+
+## Methodology
+
+| Stage | Techniques and purpose |
+| --- | --- |
+| Data understanding | Data familiarisation, exploratory data analysis, missing-value investigation and distribution checks |
+| Preprocessing | Missing-value handling, categorical encoding (including One-Hot Encoding) and feature scaling where applicable |
+| Feature engineering | Team-form, goals-related, home/away and odds-based indicators; investigation of Elo ratings and clustering |
+| Feature selection | Correlation analysis and `SelectKBest` to identify informative predictors |
+| Dimensionality reduction | PCA experiments to investigate feature-space compression |
+| Imbalance handling | SMOTE experiments to address uneven representation of Home, Draw and Away outcomes |
+| Model development | RFC, k-NN, Gradient Boosting, MLP and Voting Ensemble |
+| Optimisation | Hyperparameter search / grid-search experiments and cross-validation |
+| Evaluation | Confusion matrix, accuracy, precision, recall, F1-score, ROC-AUC and actual-versus-predicted comparisons |
+| Explainability | SHAP-based analysis of feature contributions to predictions |
+
+The dissertation reports a **70% training / 20% validation / 10% test** division. The final test set was used to compare generalisation after model development and tuning.
+
+### Model comparison
+
+| Model | Role in the study |
+| --- | --- |
+| Random Forest Classifier | **Best overall model reported in the final dissertation** |
+| k-Nearest Neighbours | Distance-based benchmark |
+| Gradient Boosting Classifier | Boosted-tree alternative |
+| Multi-Layer Perceptron | Neural-network alternative |
+| Voting Ensemble | Combined predictions from multiple estimators |
+
+Other algorithms, including Logistic Regression and Support Vector Machines, are discussed in the research context. The five models above form the dissertation's final comparison.
+
+## Evaluation and findings
+
+The dissertation reports **approximately 66% test accuracy** for Random Forest and an **ROC-AUC of approximately 0.82**. Its class-specific Random Forest scores are:
+
+| Actual outcome | Precision | Recall | F1-score |
+| --- | ---: | ---: | ---: |
+| Away (A) | 0.67 | 0.70 | 0.69 |
+| Draw (D) | 0.69 | 0.59 | 0.64 |
+| Home (H) | 0.64 | 0.70 | 0.67 |
+
+The comparatively lower **draw recall (0.59)** illustrates why overall accuracy alone is insufficient for this three-class problem. Confusion matrices and per-class metrics provide a more informative assessment.
+
+SHAP analysis was used to interpret the contribution of predictors to the model's outputs. These explanations describe the trained model's behaviour; they do not establish that a feature causes a match outcome.
+
+## Repository structure
+
+```text
+football-match-outcome-prediction-ml/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── requirements.txt
+├── notebooks/
+│   ├── epl_results_prediction(part1_eda)_jupyter_notebook.ipynb
+│   └── epl_results_prediction(part2)_jupyter_notebook.ipynb
+└── docs/
+    ├── epl_results_prediction_dessertation_final.pdf
+    ├── epl_results_prediction(part1_eda)_jupyter_notebook.pdf
+    ├── epl_results_prediction(part2)_jupyter_notebook.pdf
+    └── epl_result_prediction_ppt.pdf
+```
 
 ## Data and prediction target
 
@@ -103,14 +221,15 @@ The notebook retains original local CSV paths. Installing its libraries alone wi
 - Compare with a majority-class baseline and report per-class results, macro F1 and balanced accuracy on an untouched future-period test set.
 - Reconcile inconsistent labels and metrics across the notebook, dissertation and presentation.
 - Publish a tested environment specification and a cleaned, reproducible workflow.
+- Future predictors:** Investigate injuries, line-ups, player ratings, weather and pre-match news where reliable historical coverage is available.
 
 ## Skills demonstrated
 
-Python data analysis, exploratory visualisation, missing-value handling, categorical encoding, feature engineering, model comparison, hyperparameter tuning, classification evaluation, model interpretation and technical research communication.
+**Python data analysis · Exploratory data analysis · Data preprocessing · Feature selection and engineering · Multiclass classification · Class-imbalance analysis · Hyperparameter tuning · Model evaluation · Explainable AI · Technical research and documentation**
 
-## Acknowledgements and data rights
+## Project context and data rights
 
-This work was undertaken as part of the MSc Data Science programme at Manchester Metropolitan University. The original dissertation contains the academic references and acknowledgements. The historical data provider is credited above; no dataset is distributed with this repository, and this README does not grant rights to third-party data or referenced materials.
+This work was undertaken as part of the MSc Data Science programme at Manchester Metropolitan University. The original dissertation contains the academic references and acknowledgements. The historical data provider is credited above; no dataset is distributed with this repository, and this README does not grant rights to third-party data or referenced materials. The model is a research demonstration, not a guarantee of football-result prediction or a betting recommendation.
 
 ## Licence
 
