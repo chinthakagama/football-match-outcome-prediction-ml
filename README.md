@@ -2,7 +2,7 @@
 
 **MSc Data Science Dissertation | Manchester Metropolitan University**
 
-**Python | Scikit-learn | Feature Engineering | SelectKBest | PCA | SMOTE | GridSearchCV | ROC-AUC | SHAP**
+**Python | Scikit-learn | Correlation Matrix | Feature Engineering | SelectKBest | PCA | SMOTE | Confusion Matrix | GridSearchCV | ROC-AUC | True vs Predicted Analysis |SHAP**
 
 An end-to-end machine learning research project investigating three-class football match outcome prediction: **Home Win (H), Draw (D) and Away Win (A)**.
 
@@ -120,7 +120,7 @@ The original data includes team identifiers, dates, scores, match statistics and
 | Imbalance handling | SMOTE experiments to address uneven representation of Home, Draw and Away outcomes |
 | Model development | RFC, k-NN, Gradient Boosting, MLP and Voting Ensemble |
 | Optimisation | Hyperparameter search / grid-search experiments and cross-validation |
-| Evaluation | Confusion matrix, accuracy, precision, recall, F1-score, ROC-AUC and actual-versus-predicted comparisons |
+| Evaluation | Confusion matrix, accuracy, precision, recall, Specificity, F1-score, ROC-AUC and actual-versus-predicted comparisons |
 | Explainability | SHAP-based analysis of feature contributions to predictions |
 
 The dissertation reports a **70% training / 20% validation / 10% test** division. The final test set was used to compare generalisation after model development and tuning.
